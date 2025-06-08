@@ -47,7 +47,7 @@ const Sidebar = () => {
       {/* Logo/Title */}
       <div className="logo mb-8">
         <Link to="/" className="text-2xl font-bold text-white no-underline">
-          AdminDashPro
+          OrderBee
         </Link>
       </div>
 

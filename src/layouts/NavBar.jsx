@@ -1,7 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-// Import icons - You can explore different sets from react-icons
-// For example, from 'react-icons/ai' (Ant Design Icons), 'react-icons/fi' (Feather Icons), 'react-icons/bs' (Bootstrap Icons)
+// Remove Link if user-profile page is not separate, or keep if it's a fallback.
+// For now, let's remove Link from the profile *area* and make it a button.
 import {
   AiOutlineMenu,
   AiOutlineSearch,
@@ -9,51 +8,76 @@ import {
   AiOutlineBell,
   AiOutlineDown,
 } from "react-icons/ai";
+import { FiSettings } from "react-icons/fi";
+import { useStateContext } from "../contexts/ContextProvider";
 
 const Navbar = () => {
+  const { handleClick, activeMenu, setActiveMenu } = useStateContext();
+
   return (
     <div className="navbar bg-white p-4 shadow-md mb-4 flex items-center justify-between">
-      {/* Left Section (e.g., Hamburger menu, Search) */}
+      {/* Left Section (Hamburger menu, Search) */}
       <div className="flex items-center">
-        <span className="navbar-icon mr-4 cursor-pointer text-gray-600">
-          <AiOutlineMenu /> {/* Replaced ☰ with icon */}
-        </span>
+        <button
+          type="button"
+          onClick={() => setActiveMenu(!activeMenu)}
+          className="navbar-icon mr-4 cursor-pointer text-gray-600 menu-toggle-btn"
+        >
+          <AiOutlineMenu />
+        </button>
         <span className="navbar-icon cursor-pointer text-gray-600">
-          <AiOutlineSearch /> {/* Replaced 🔍 with icon */}
+          <AiOutlineSearch />
         </span>
       </div>
 
-      {/* Right Section (e.g., Shopping Cart, Notifications, User Profile) */}
+      {/* Right Section (Shopping Cart, Notifications, User Profile) */}
       <div className="flex items-center">
-        <span className="navbar-icon relative mr-4 cursor-pointer text-gray-600">
-          <AiOutlineShoppingCart /> {/* Replaced 🛒 with icon */}
+        <button
+          type="button"
+          onClick={() => handleClick("cart")}
+          className="navbar-icon relative mr-4 cursor-pointer text-gray-600"
+        >
+          <AiOutlineShoppingCart />
           <span className="badge absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">
             3
           </span>
-        </span>
-        <span className="navbar-icon relative mr-4 cursor-pointer text-gray-600">
-          <AiOutlineBell /> {/* Replaced 🔔 with icon */}
+        </button>
+        <button
+          type="button"
+          onClick={() => handleClick("notification")}
+          className="navbar-icon relative mr-4 cursor-pointer text-gray-600"
+        >
+          <AiOutlineBell />
           <span className="badge absolute -top-2 -right-2 bg-green-500 text-white text-xs rounded-full px-1">
             5
           </span>
-        </span>
+        </button>
 
-        {/* User Profile */}
-        <Link
-          to="/user-profile"
-          className="flex items-center no-underline text-gray-800"
+        {/* Settings Icon */}
+        <button
+          type="button"
+          onClick={() => handleClick("themeSettings")}
+          className="navbar-icon mr-4 cursor-pointer text-gray-600 settings-icon-btn"
+        >
+          <FiSettings />
+        </button>
+
+        {/* User Profile - Now a button */}
+        <button
+          type="button"
+          onClick={() => handleClick("userProfile")} // Add click handler for User Profile
+          className="user-profile-toggle-btn flex items-center p-1 hover:bg-gray-100 rounded-lg" // Added specific styling classes
         >
           <img
-            src="https://via.placeholder.com/32" // Placeholder for user image
-            alt="User Profile"
+            src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Harshal&size=32"
+            alt="Harshal's Profile"
             className="user-avatar w-8 h-8 rounded-full mr-2"
           />
-          <span className="user-name font-medium">Harshal</span>{" "}
-          {/* Updated name */}
+          <span className="user-name font-medium">Harshal</span>
           <span className="navbar-icon ml-1 text-gray-600">
-            <AiOutlineDown /> {/* Replaced ▼ with icon */}
+            <AiOutlineDown />
           </span>
-        </Link>
+        </button>
       </div>
     </div>
   );

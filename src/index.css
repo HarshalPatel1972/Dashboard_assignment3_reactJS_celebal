@@ -1,3 +1,5 @@
+@import url("https://cdn.syncfusion.com/ej2/material.css");
+
 /* Simple CSS Reset */
 *,
 *::before,
@@ -35,9 +37,9 @@ body {
   display: flex;
 }
 
-.w-64 {
-  width: 16rem; /* 16rem = 256px */
-}
+/* .w-64 { */
+/* width: 16rem; 16rem = 256px */
+/* } */
 
 .min-h-screen {
   min-height: 100vh; /* Full viewport height */
@@ -448,4 +450,568 @@ body {
   .bottom-charts-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ... (previous CSS rules) ... */
+
+/* --- Theme Settings Panel CSS --- */
+
+/* ... (other navbar-icon styles) ... */
+
+.settings-icon-btn {
+  background: none;
+  border: none;
+  padding: 0; /* Remove default button padding */
+  margin: 0; /* Remove default button margin */
+  font-size: 1.5rem; /* Match navbar-icon size */
+  cursor: pointer;
+  color: var(--text-color-secondary); /* Match navbar-icon color */
+  transition: color 0.2s ease;
+}
+
+.settings-icon-btn:hover {
+  color: var(--primary-color); /* Hover effect using primary color */
+}
+
+.theme-settings-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 22rem; /* A fixed width for the panel */
+  height: 100vh; /* Full height */
+  background-color: var(
+    --bg-color-page-content
+  ); /* White in light, darker in dark */
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1001; /* Higher than toggle button */
+  padding: 1.5rem; /* p-6 */
+  overflow-y: auto; /* Allow scrolling if content is too long */
+}
+
+.theme-settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem; /* mb-8 */
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--text-color-secondary); /* A subtle separator */
+}
+
+.theme-settings-header .font-bold {
+  font-weight: bold;
+  font-size: 1.25rem; /* text-xl */
+  color: var(--text-color-primary);
+}
+
+.close-settings-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem; /* text-2xl */
+  cursor: pointer;
+  color: var(--text-color-primary);
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.close-settings-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.theme-options-section {
+  margin-bottom: 1.5rem;
+}
+.theme-options-section .font-semibold {
+  font-weight: 600;
+  font-size: 1.125rem; /* text-lg */
+  color: var(--text-color-primary);
+}
+.theme-options-section .mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.theme-options-section .flex {
+  display: flex;
+}
+.theme-options-section .items-center {
+  align-items: center;
+}
+
+.theme-options-section input[type="radio"] {
+  margin-right: 0.5rem; /* mr-2 */
+}
+
+.theme-options-section label {
+  color: var(--text-color-primary); /* Ensure label text changes with theme */
+  font-size: 1rem;
+}
+
+.theme-options-section .mt-2 {
+  margin-top: 0.5rem;
+}
+
+.color-picker-circle {
+  width: 2.5rem; /* w-10 */
+  height: 2.5rem; /* h-10 */
+  border-radius: 50%; /* rounded-full */
+  border: 2px solid transparent; /* default border */
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+/* Highlight selected color */
+.color-picker-circle .bs-check {
+  font-size: 1.5rem; /* text-2xl */
+}
+
+/* Conditional classes for sidebar/main content based on activeMenu */
+/* Adjusting sidebar-container */
+/* --- Sidebar Container & Collapse/Expand CSS --- */
+.sidebar-container {
+  background-color: var(--sidebar-bg); /* Applies sidebar background */
+  color: var(--sidebar-text);
+  min-height: 100vh;
+  overflow-x: hidden; /* Hide horizontal overflow during collapse */
+  transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition for width and opacity */
+  flex-shrink: 0; /* Prevents sidebar from shrinking below its content in flex container */
+  /* Note: Padding is applied inside the Sidebar component itself, not container */
+}
+
+.sidebar-container.sidebar-open {
+  width: 16rem; /* Full width when active */
+  opacity: 1; /* Fully visible */
+  pointer-events: auto; /* Enable interactions */
+}
+
+.sidebar-container.sidebar-closed {
+  width: 0; /* Collapse to 0 width */
+  opacity: 0; /* Fade out content */
+  pointer-events: none; /* Disable interactions when hidden */
+}
+
+/* Styling for the menu toggle button in Navbar */
+.menu-toggle-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-color-secondary);
+  transition: color 0.2s ease;
+}
+.menu-toggle-btn:hover {
+  color: var(--primary-color);
+}
+.sidebar-container.block {
+  /* When sidebar is active */
+  display: block;
+  width: 16rem; /* w-64 */
+  opacity: 1;
+}
+.sidebar-container.hidden {
+  /* When sidebar is hidden */
+  display: none; /* Can be 'none' or 'block' with 0 width/opacity for transition */
+  width: 0;
+  opacity: 0;
+}
+
+.main-content-area {
+  flex: 1; /* Always take remaining space */
+  min-height: 100vh;
+  background-color: var(--bg-color-main); /* Uses theme variable */
+  overflow-x: hidden; /* Keep this to prevent horizontal scroll for content */
+  transition: margin-left 0.3s ease-in-out; /* Although flex-1 mostly handles, this can be a fallback */
+}
+
+.main-content-active {
+  /* When sidebar is open */
+  margin-left: 0; /* No explicit margin needed if using flex gap */
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.main-content-full {
+  /* When sidebar is closed (hidden) */
+  margin-left: 0; /* Still 0, as flex-1 takes full width */
+  transition: margin-left 0.3s ease-in-out;
+}
+
+/* Override specific primary color hover */
+.download-report-button:hover {
+  filter: brightness(85%); /* Keep this for generic darkening */
+}
+.sidebar-link:hover {
+  color: var(--primary-color);
+}
+
+/* ... (previous CSS rules) ... */
+
+/* ... (previous CSS rules) ... */
+
+/* --- Color Picker Page Specific CSS --- */
+.color-picker-page {
+  /* No specific background, uses .page-content */
+}
+
+.color-pickers-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  justify-content: space-around; /* Space out pickers */
+  gap: 2rem; /* Space between pickers */
+  margin-top: 2rem;
+}
+
+.color-picker-section {
+  flex: 1; /* Allows sections to grow */
+  min-width: 280px; /* Minimum width before wrapping */
+  max-width: 48%; /* Adjust max-width to allow two columns with gap */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(
+    --bg-color-page-content
+  ); /* Match page content background */
+  padding: 1.5rem; /* This padding is on the *outer card* */
+  border-radius: 0.5rem;
+  box-shadow: var(--card-shadow);
+  overflow: hidden; /* Hide any internal overflow of this section */
+}
+
+.color-picker-section .section-heading {
+  margin-bottom: 1rem; /* Space below heading */
+}
+
+/* --- Syncfusion ColorPicker Overrides (New/Revised) --- */
+/* Target the root wrapper of the Syncfusion components added via cssClass */
+.e-colorpicker-wrapper.custom-ej-colorpicker {
+  box-shadow: none !important; /* Remove default Syncfusion shadow if any */
+  border: none !important; /* Remove default Syncfusion border if any */
+  width: 100%; /* Ensure the component itself takes full width of its parent (.color-picker-section) */
+  max-width: 300px; /* Limit internal component width if it gets too wide */
+  height: auto; /* Let content define height for palette */
+  padding: 0 !important; /* Remove any internal padding from Syncfusion that might push content out */
+  box-sizing: border-box; /* Ensures padding/border are included in the width */
+}
+
+/* Specifically for the palette mode's grid container */
+.e-colorpicker-wrapper.e-inline-palette .e-colorpicker-palette {
+  border: none !important; /* Remove internal border */
+  padding: 0 !important; /* Remove internal padding if present */
+  width: 100% !important; /* Ensure the grid itself uses full space */
+  box-sizing: border-box;
+  height: auto !important; /* Let the palette grid itself determine height */
+}
+
+/* For the picker mode (gradient) */
+.e-colorpicker-wrapper.e-inline-picker .e-colorpicker-container {
+  width: 100% !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+}
+
+/* Basic Responsiveness for Color Picker */
+@media (max-width: 768px) {
+  .color-pickers-container {
+    flex-direction: column; /* Stack vertically on smaller screens */
+    align-items: center;
+  }
+  .color-picker-section {
+    max-width: 90%; /* Take more width on small screens */
+  }
+}
+
+/* ... (previous CSS rules) ... */
+
+/* --- Popover Panels (Cart, Notifications, Settings) CSS --- */
+.popover-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 22rem; /* Consistent width for all popovers */
+  height: 100vh;
+  background-color: var(--bg-color-page-content); /* Uses theme variable */
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1002; /* Higher than theme settings panel */
+  padding: 1.5rem;
+  overflow-y: auto;
+  /* Add transition for sliding animation later if needed */
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(0); /* Default position */
+}
+
+/* If you want a sliding animation, you'd add classes in JSX for active/inactive */
+/* E.g., .popover-panel.active { transform: translateX(0); }
+        .popover-panel.inactive { transform: translateX(100%); }
+   And toggle these classes in MainLayout based on isClicked state
+*/
+
+/* ... (previous CSS rules) ... */
+
+/* --- Popover Panels (Cart, Notifications, Settings) CSS --- */
+.popover-panel {
+  /* ... existing styles ... */
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(0);
+}
+
+.popover-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--text-color-secondary);
+}
+
+.popover-header .font-semibold {
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--text-color-primary);
+  /* Add margin-right to push the button away slightly */
+  margin-right: 1rem; /* Adjust as needed */
+}
+
+.close-popover-btn {
+  background: none;
+  border: none;
+  font-size: 1.8rem; /* Increased size for better click target and visibility */
+  cursor: pointer;
+  color: var(
+    --text-color-secondary
+  ); /* Use secondary text color for consistency */
+  padding: 0.2rem; /* Reduced padding to make it compact */
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  display: flex; /* Ensures icon is centered */
+  align-items: center;
+  justify-content: center;
+}
+
+.close-popover-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--primary-color); /* Highlight on hover */
+}
+
+/* --- Cart Specific CSS --- */
+.cart-items {
+  margin-bottom: 1.5rem;
+}
+
+.cart-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+/* --- Cart Specific CSS --- */
+.cart-items {
+  margin-bottom: 1.5rem;
+}
+
+.cart-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.cart-item img {
+  width: 5rem; /* Equivalent to Tailwind's w-20 (80px) */
+  height: 5rem; /* Equivalent to Tailwind's h-20 (80px) */
+  object-fit: cover; /* Ensures image covers the area without distortion */
+  border-radius: 0.5rem; /* Equivalent to Tailwind's rounded-lg */
+  flex-shrink: 0; /* Prevents image from shrinking in flex container */
+}
+
+.cart-item p {
+  color: var(--text-color-primary);
+}
+/* ... (rest of cart-item, quantity-controls, etc. styles below) ... */
+
+.cart-item p {
+  color: var(--text-color-primary);
+}
+
+.cart-item .font-semibold {
+  font-weight: 600;
+}
+
+.cart-item .text-gray-500 {
+  color: var(--text-color-secondary);
+}
+
+.cart-item-quantity-controls {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--text-color-secondary);
+  border-radius: 0.25rem;
+  margin-left: 1rem;
+}
+
+.quantity-btn {
+  background-color: transparent;
+  border: none;
+  padding: 0.25rem 0.75rem;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.125rem;
+  color: var(--text-color-primary);
+}
+
+.quantity-display {
+  padding: 0.25rem 0.5rem;
+  border-left: 1px solid var(--text-color-secondary);
+  border-right: 1px solid var(--text-color-secondary);
+  color: var(--text-color-primary);
+}
+
+.cart-summary .font-semibold {
+  color: var(--text-color-primary);
+}
+.cart-summary .text-gray-500 {
+  color: var(--text-color-secondary);
+}
+
+.place-order-btn {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--primary-color); /* Uses theme primary color */
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: filter 0.2s ease;
+}
+.place-order-btn:hover {
+  filter: brightness(85%);
+}
+
+/* --- Notification Specific CSS --- */
+.notifications-list {
+  margin-bottom: 1.5rem;
+}
+
+.notification-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: flex-start; /* Align icon and text at top */
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.1); /* Subtle separator */
+}
+.notification-item:last-child {
+  border-bottom: none; /* No border for the last item */
+}
+
+.notification-icon-wrapper {
+  width: 2.5rem; /* w-10 */
+  height: 2.5rem; /* h-10 */
+  border-radius: 50%; /* rounded-full */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25rem; /* text-xl */
+  color: #ffffff; /* Icon color */
+  flex-shrink: 0; /* Prevent it from shrinking */
+}
+
+.notification-item p {
+  color: var(--text-color-primary);
+}
+.notification-item .font-semibold {
+  font-weight: 600;
+}
+.notification-item .text-gray-500 {
+  color: var(--text-color-secondary);
+}
+
+/* ... (previous CSS rules) ... */
+
+/* --- User Profile Popover Specific CSS --- */
+.user-profile-panel {
+  /* Inherits from .popover-panel for positioning/basic styles */
+  /* Can add specific width if different from others */
+  width: 18rem; /* Slightly narrower than cart/notifications perhaps */
+}
+
+.user-profile-toggle-btn {
+  background: none;
+  border: none;
+  padding: 0.25rem 0.5rem; /* p-1 */
+  border-radius: 0.5rem; /* rounded-lg */
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.user-profile-toggle-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05); /* hover:bg-gray-100 */
+}
+
+.user-info-header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--text-color-secondary); /* Separator */
+}
+.user-info-header img {
+  flex-shrink: 0; /* Prevent image from shrinking */
+  width: 5rem; /* w-20 */
+  height: 5rem; /* h-20 */
+  border-radius: 9999px; /* rounded-full */
+  object-fit: cover;
+}
+.user-info-header p {
+  color: var(--text-color-primary);
+}
+.user-info-header .text-gray-500 {
+  color: var(--text-color-secondary);
+}
+
+.user-profile-actions {
+  margin-bottom: 2rem;
+}
+
+.user-profile-action-item {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0.75rem 0; /* Padding for click area */
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.1); /* Subtle separator */
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.user-profile-action-item:hover {
+  background-color: rgba(0, 0, 0, 0.02); /* Slight hover effect */
+}
+.user-profile-action-item:last-child {
+  border-bottom: none; /* No border for the last item */
+}
+
+.user-profile-icon-btn {
+  width: 2.5rem; /* w-10 */
+  height: 2.5rem; /* h-10 */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25rem; /* text-xl */
+  border: none;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.user-profile-action-item p {
+  color: var(--text-color-primary);
+}
+.user-profile-action-item .font-semibold {
+  font-weight: 600;
+}
+.user-profile-action-item .text-gray-500 {
+  color: var(--text-color-secondary);
 }

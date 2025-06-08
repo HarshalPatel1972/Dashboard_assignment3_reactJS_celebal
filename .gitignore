@@ -56,3 +56,5 @@ _site/
 
 # Vite-specific files
 .vite/
+
+.env
